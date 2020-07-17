@@ -18,7 +18,7 @@ fn main() -> ! {
     let mut timer = board.timer;
 
     // puzzle.hex uses channel 25
-    radio.set_channel(Channel::_25);
+    radio.set_channel(Channel::_11);
 
     /* # Build a dictionary */
     let mut dict = LinearMap::<u8, u8, consts::U128>::new();

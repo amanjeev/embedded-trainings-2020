@@ -9,6 +9,7 @@ use dk::ieee802154::{Channel, Error, Packet};
 use panic_log as _; // the panicking behavior
 
 const TEN_MS: u32 = 10_000;
+const ONE_SEC: u32 = 1_000_000;
 
 #[entry]
 fn main() -> ! {
@@ -18,7 +19,7 @@ fn main() -> ! {
     let mut timer = board.timer;
 
     // NOTE if you ran `change-channel` then you may need to update the channel here
-    radio.set_channel(Channel::_20); // <- must match the Dongle's listening channel
+    radio.set_channel(Channel::_11); // <- must match the Dongle's listening channel
 
     let mut packet = Packet::new();
     let msg = b"olleh";
@@ -33,6 +34,7 @@ fn main() -> ! {
     // TODO try uncommenting this line
     // timer.delay(1_000);
 
+    timer.delay(900);
     let res = radio.recv_timeout(&mut packet, &mut timer, TEN_MS);
 
     match res {

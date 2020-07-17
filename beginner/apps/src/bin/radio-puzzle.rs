@@ -18,7 +18,7 @@ fn main() -> ! {
 
     // puzzle.hex uses channel 25 by default
     // NOTE if you ran `change-channel` then you may need to update the channel here
-    radio.set_channel(Channel::_25); // <- must match the Dongle's listening channel
+    radio.set_channel(Channel::_11); // <- must match the Dongle's listening channel
 
     let mut packet = Packet::new();
 
@@ -47,5 +47,13 @@ fn main() -> ! {
     } else {
         log::error!("no response or response packet was corrupted");
     }
+
+    let ciphertext = str::from_utf8(&packet).expect("failed!!!");
+    let radio2 = Packet::new();
+    for c in 0..127 {
+        let msg = &[c];
+
+    }
+    
     dk::exit()
 }
